@@ -24,7 +24,7 @@ namespace ProyectoMVC.LogicaDeNegocios
         public void Agregar(ProyectoMVC.Model.Clientes elNuevoCliente)
         {
             ProyectoMVC.AccesoADatos.GestorDeClientes elGestor = new AccesoADatos.GestorDeClientes();
-           // elNuevoCliente.estado = (byte) EstadoDelCliente.Disponible;
+            elNuevoCliente.estado = (byte) EstadoDelCliente.Disponible;
             elGestor.Agregar(elNuevoCliente);
         }
         public void Editar(Model.Clientes elCliente)
@@ -39,7 +39,17 @@ namespace ProyectoMVC.LogicaDeNegocios
             ProyectoMVC.Model.Clientes elCliente = new Model.Clientes();
 
             elCliente = elGestor.ObtenerClientePorId(id);
-           // elCliente.estado = (byte) EstadoDelCliente.conPrestamo;
+            elCliente.estado = (byte) EstadoDelCliente.conPrestamo;
+            elGestor.CambioDeEstado(elCliente);
+        }
+
+        public void ColocarEnEliminado(int id)
+        {
+            ProyectoMVC.AccesoADatos.GestorDeClientes elGestor = new AccesoADatos.GestorDeClientes();
+            ProyectoMVC.Model.Clientes elCliente = new Model.Clientes();
+
+            elCliente = elGestor.ObtenerClientePorId(id);
+            elCliente.estado = (byte)EstadoDelCliente.eliminado;
             elGestor.CambioDeEstado(elCliente);
         }
     }

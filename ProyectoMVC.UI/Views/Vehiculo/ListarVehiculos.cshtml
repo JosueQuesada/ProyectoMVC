@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ProyectoMVC.Model.Vehiculo>
+
+@{
+    ViewBag.Title = "ListarVehiculos";
+    String estado = "";
+}
+
+<h2>Listaa de Vehiculos</h2>
+
+<p>
+    @Html.ActionLink("Agregar nuevo", "Create")
+</p>
+<table class="table table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.numeroDePlaca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.modelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.año)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.numeroDePlaca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.modelo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.año)
+        </td>
+        <td>
+            @if (item.estado == 1)
+            {
+                estado = "Disponible";
+                @estado;
+            }
+            else if (item.estado == 2)
+            {
+                estado = "En Prestamo";
+                @estado;
+            }
+            else if (item.estado == 3)
+            {
+                estado = "Eliminado";
+                @estado;
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

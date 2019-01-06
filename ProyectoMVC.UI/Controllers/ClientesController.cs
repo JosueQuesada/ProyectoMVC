@@ -8,7 +8,7 @@ namespace ProyectoMVC.UI.Controllers
 {
     public class ClientesController : Controller
     {
-        // GET: Clientes
+    
         public ActionResult ListaDeClientes()
         {
 
@@ -18,27 +18,22 @@ namespace ProyectoMVC.UI.Controllers
             return View(laListaDeClientes);
         }
 
-        // GET: Clientes/Details/5
-        public ActionResult Details(int id)
+
+  
+        public ActionResult Crear()
         {
             return View();
         }
 
-        // GET: Clientes/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Clientes/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Crear(ProyectoMVC.Model.Clientes elNuevoCliente)
         {
             try
             {
-                // TODO: Add insert logic here
+                ProyectoMVC.LogicaDeNegocios.CordinadorDeClientes elCordinadorDeClientes = new LogicaDeNegocios.CordinadorDeClientes();
+                elCordinadorDeClientes.Agregar(elNuevoCliente);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("ListaDeClientes");
             }
             catch
             {
@@ -46,21 +41,25 @@ namespace ProyectoMVC.UI.Controllers
             }
         }
 
-        // GET: Clientes/Edit/5
-        public ActionResult Edit(int id)
+
+        public ActionResult Editar(int id)
         {
-            return View();
+            ProyectoMVC.LogicaDeNegocios.CordinadorDeClientes cordinadorDeClientes = new LogicaDeNegocios.CordinadorDeClientes();
+            ProyectoMVC.Model.Clientes elCliente = new Model.Clientes();
+            elCliente= cordinadorDeClientes.ObternerClientePorId(id);
+            return View(elCliente);
         }
 
-        // POST: Clientes/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Editar(int id, ProyectoMVC.Model.Clientes elCliente)
         {
             try
             {
-                // TODO: Add update logic here
+                ProyectoMVC.LogicaDeNegocios.CordinadorDeClientes cordinadorDeClientes = new LogicaDeNegocios.CordinadorDeClientes();
+                elCliente.id = id;
+                cordinadorDeClientes.Editar(elCliente);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("ListaDeClientes");
             }
             catch
             {
@@ -68,21 +67,15 @@ namespace ProyectoMVC.UI.Controllers
             }
         }
 
-        // GET: Clientes/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Clientes/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Eliminar(int id)
         {
             try
             {
-                // TODO: Add delete logic here
+                ProyectoMVC.Model.Clientes elCliente = new Model.Clientes();
+                ProyectoMVC.LogicaDeNegocios.CordinadorDeClientes cordinadorDeClientes = new LogicaDeNegocios.CordinadorDeClientes();
+                cordinadorDeClientes.ColocarEnEliminado(id);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("ListaDeClientes");
             }
             catch
             {
