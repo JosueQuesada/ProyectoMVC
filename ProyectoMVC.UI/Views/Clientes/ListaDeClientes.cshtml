@@ -24,6 +24,9 @@
     <table class="table" id="miTabla">
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.cedula)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.nombre)
             </th>
             <th>
@@ -47,6 +50,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cedula)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.nombre)
                 </td>

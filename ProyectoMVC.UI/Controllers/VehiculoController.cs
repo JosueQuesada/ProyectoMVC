@@ -25,20 +25,21 @@ namespace ProyectoMVC.UI.Controllers
         }
 
         // GET: Vehiculo/Create
-        public ActionResult Create()
+        public ActionResult Crear()
         {
             return View();
         }
 
         // POST: Vehiculo/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Crear(ProyectoMVC.Model.Vehiculo elVehiculo)
         {
             try
             {
-                // TODO: Add insert logic here
+                ProyectoMVC.LogicaDeNegocios.CordinadorDeVehiculos elCordinador = new LogicaDeNegocios.CordinadorDeVehiculos();
+                elCordinador.Agregar(elVehiculo);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("ListarVehiculos");
             }
             catch
             {
@@ -46,43 +47,16 @@ namespace ProyectoMVC.UI.Controllers
             }
         }
 
-        // GET: Vehiculo/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
 
-        // POST: Vehiculo/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+ 
+        public ActionResult Eliminar(int id)
         {
             try
             {
-                // TODO: Add update logic here
+                ProyectoMVC.LogicaDeNegocios.CordinadorDeVehiculos cordinadorDeVehiculos = new LogicaDeNegocios.CordinadorDeVehiculos();
+                cordinadorDeVehiculos.ColocarEnEliminado(id);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Vehiculo/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Vehiculo/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                return RedirectToAction("ListarVehiculos");
             }
             catch
             {

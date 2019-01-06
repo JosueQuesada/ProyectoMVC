@@ -1,0 +1,92 @@
+﻿@model IEnumerable<ProyectoMVC.Model.Prestamos>
+
+@{
+    ViewBag.Title = "ListarPrestamos";
+    string estado = ""; 
+}
+
+<h2>Lista de prestamos</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Prestamo", "Crear")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.cedulaDelCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.placaDelVehiculo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaDePrestamo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaDeDevolucion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dias)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.montoDePrestamo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prima)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.montoACancelar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cedulaDelCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.placaDelVehiculo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaDePrestamo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaDeDevolucion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dias)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.montoDePrestamo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prima)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.montoACancelar)
+        </td>
+        <td>
+            @if (item.estado == 1)
+            {
+                estado = "En Proceso";
+                @estado;
+            }
+            else if (item.estado == 2)
+            {
+                estado = "Finalizado";
+                @estado;
+            }
+           
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

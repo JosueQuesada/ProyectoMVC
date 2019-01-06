@@ -9,7 +9,7 @@ namespace ProyectoMVC.Model
     public class Vehiculo
     {
         public int id { get; set; }
-        public int numeroDePlaca { get; set; }
+        public string numeroDePlaca { get; set; }
         public string modelo { get; set; }
         public string año { get; set; }
         public int estado { get; set; }

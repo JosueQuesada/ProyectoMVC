@@ -5,10 +5,10 @@
     String estado = "";
 }
 
-<h2>Listaa de Vehiculos</h2>
+<h2>Lista de Vehiculos</h2>
 
 <p>
-    @Html.ActionLink("Agregar nuevo", "Create")
+    @Html.ActionLink("Agregar nuevo", "Crear")
 </p>
 <table class="table table-responsive">
     <tr>
@@ -56,9 +56,90 @@
             }
         </td>
         <td>
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.id })
+            <a id="@item.id" href="#" onclick="EliminarVehiculo(@item.id)">
+                Eliminar
+            </a>
         </td>
     </tr>
 }
 
 </table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.12/dist/sweetalert2.all.min.js"></script>
+
+    <script type="">
+
+        function buscarEnLista() {
+
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("laBusqueda");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("miTabla");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+    </script>
+    <script type="">
+
+         function EliminarVehiculo(id) {
+	swal({
+		title: 'Estás seguro que deseas eliminar?',
+		text: "Esta acción no se puede revertir!",
+		type: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Si, eliminar!'
+	}).then((result) => {
+		if (result.value) {
+			$.ajax({
+				url: '@Url.Action("Eliminar", "Vehiculo")',
+				type: "GET",
+				data: { id: id },
+				beforeSend: function () {
+					//mientras carga
+				},
+				success: function (result) {
+					//esto va a ser cuando se ejecuto correctamente
+					swal({
+						title: 'Su vehiculo se ha eliminado',
+						text: "Con exito!",
+						type: 'success',
+						showCancelButton: false,
+						allowEscapeKey: false
+					}).then((result) => {
+						if (result.value) {
+							window.location.href = '@Url.Action("ListarVehiculos", "Vehiculo")';
+						}
+					})
+				},
+				error: function (result) {
+					//hay error
+					swal({
+						type: 'error',
+						title: 'Oops...',
+						text: 'Ha ocurrido un error!',
+
+					});
+					return false;
+				}
+			});
+		}
+	})
+}
+
+    </script>
+}

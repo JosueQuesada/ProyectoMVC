@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Context.cs" />
     <Compile Include="GestorDeClientes.cs" />
+    <Compile Include="GestorDePrestamos.cs" />
     <Compile Include="GestorDeVehiculos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

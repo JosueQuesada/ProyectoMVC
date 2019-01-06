@@ -9,9 +9,9 @@ namespace ProyectoMVC.Model
     public class Prestamos
     {
         public int id { get; set; }
-        public int idCliente { get; set; }
+        public string cedulaDelCliente { get; set; }
         public string placaDelVehiculo { get; set; }
-        public DateTime fechaDePresamo { get; set; }
+        public DateTime fechaDePrestamo { get; set; }
         public DateTime fechaDeDevolucion { get; set; }
         public int dias { get; set; }
         public Double montoDePrestamo { get; set; }
