@@ -16,10 +16,36 @@ namespace ProyectoMVC.AccesoADatos
             return resultado;
         }
 
+        public int ObtenerIdPorNumeroDeCedula(string numeroDeCedula)
+        {
+            try
+            {
+                var db = new Context();
+
+                IQueryable<int> resultado = from c in db.Clientes
+                                            where c.cedula.Equals(numeroDeCedula)
+                                            select c.id;
+
+                return resultado.FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+                return 0;
+            }
+        }
+
         public List<Model.Clientes> ObtenerTodosLosClientes()
         {
             var db = new Context();
-            var resultado = db.Clientes.ToList();
+            var resultado = db.Clientes.Where(elEstado => elEstado.estado == 1 || elEstado.estado ==2).ToList();
+            return resultado;
+        }
+
+        public List<Model.Clientes> ObtenerTodosLosDisponibles()
+        {
+            var db = new Context();
+            var resultado = db.Clientes.Where(elEstado => elEstado.estado == 1).ToList();
             return resultado;
         }
 

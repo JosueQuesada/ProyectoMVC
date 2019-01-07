@@ -9,31 +9,52 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <nav class=" navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("App MVC", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Clientes", "ListaDeClientes", "Clientes")</li>
-                    <li>@Html.ActionLink("Vehiculos", "ListarVehiculos", "Vehiculo")</li>
-                    <li>@Html.ActionLink("Prestamos", "ListarPrestamos", "Prestamos")</li>
+                    <li class="active">@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Clientes <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Agregar Clientes", "Crear", "Clientes")</li>
+                            <li>@Html.ActionLink("Ver Clientes", "ListaDeClientes", "Clientes")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Vehículos <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Agregar vehículos", "Crear", "Vehiculo")</li>
+                            <li>@Html.ActionLink("Ver vehículos", "ListarVehiculos", "Vehiculo")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Prestamos <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Crear prestamo", "Crear", "Prestamos")</li>
+                            <li>@Html.ActionLink("Ver prestamos en proceso", "ListarPrestamos", "Prestamos")</li>
+                            <li>@Html.ActionLink("Ver Prestamos Finalizados", "ListaDeClientes", "Prestamos")</li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
-    </div>
+    </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - Rent A Car</p>
         </footer>
     </div>
 

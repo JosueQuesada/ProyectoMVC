@@ -24,6 +24,28 @@ namespace ProyectoMVC.AccesoADatos
             return resultado;
         }
 
+        public List<Model.Prestamos> ObtenerPrestamoEnProceso()
+        {
+            var db = new Context();
+            var resultado = db.Prestamos.Where(elEstado => elEstado.estado == 1).ToList();
+            return resultado;
+        }
+
+        public List<Model.Prestamos> ObtenerPrestamoFinalizado(String numeroDeCedula)
+        {
+            try
+            {
+                var db = new Context();
+                var resultado = db.Prestamos.Where(elEstado => elEstado.estado == 2 && elEstado.cedulaDelCliente.Equals(numeroDeCedula)).ToList();
+                return resultado;
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+                return null;
+            }
+        }
+
         public void Agregar(Model.Prestamos elNuevoPrestamo)
         {
             var db = new Context();
@@ -31,6 +53,20 @@ namespace ProyectoMVC.AccesoADatos
             db.Entry(elNuevoPrestamo).State = System.Data.Entity.EntityState.Added;
             db.SaveChanges();
 
+        }
+
+        public void Actualizar(Model.Prestamos elPrestamo)
+        {
+            var prestamoEnBaseDeDatos = ObtenerPrestamoPorId(elPrestamo.id);
+
+            prestamoEnBaseDeDatos.fechaDeDevolucion = elPrestamo.fechaDeDevolucion;
+            prestamoEnBaseDeDatos.dias = elPrestamo.dias;
+            prestamoEnBaseDeDatos.montoACancelar = elPrestamo.montoACancelar;
+            prestamoEnBaseDeDatos.montoDePrestamo = elPrestamo.montoDePrestamo;
+
+            var db = new Context();
+            db.Entry(prestamoEnBaseDeDatos).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
         }
 
         public void CambioDeEstado(Model.Prestamos elPrestamo)

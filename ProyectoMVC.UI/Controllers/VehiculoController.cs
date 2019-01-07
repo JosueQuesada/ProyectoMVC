@@ -8,7 +8,7 @@ namespace ProyectoMVC.UI.Controllers
 {
     public class VehiculoController : Controller
     {
-        // GET: Vehiculo
+
         public ActionResult ListarVehiculos()
         {
 
@@ -18,19 +18,13 @@ namespace ProyectoMVC.UI.Controllers
             return View(laListaDeVehiculos);
         }
 
-        // GET: Vehiculo/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
-        // GET: Vehiculo/Create
         public ActionResult Crear()
         {
             return View();
         }
 
-        // POST: Vehiculo/Create
+ 
         [HttpPost]
         public ActionResult Crear(ProyectoMVC.Model.Vehiculo elVehiculo)
         {

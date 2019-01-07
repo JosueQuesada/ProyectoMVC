@@ -13,5 +13,5 @@ create table VEHICULO
 año char(4) not null, estado int not null)
 go
 create table PRESTAMOS 
-(id int IDENTITY (1,1) not null, cedulaDelCliente varchar(10) not null, placaDelVehiculo varchar(50) not null, fechaDePrestamo datetime not null,
-fechaDeDevolucion datetime not null,dias int not null, montoDePrestamo float, prima float, montoACancelar float,estado int not null)
+(id int IDENTITY (1,1) not null, cedulaDelCliente varchar(10) not null, placaDelVehiculo varchar(50) not null, fechaDePrestamo date not null,
+fechaDeDevolucion date not null,dias int not null, montoDePrestamo float, prima float, montoACancelar float,estado int not null)

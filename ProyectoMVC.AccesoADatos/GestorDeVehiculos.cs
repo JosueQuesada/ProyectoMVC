@@ -17,12 +17,39 @@ namespace ProyectoMVC.AccesoADatos
             return resultado;
         }
 
+        public int ObtenerIdPorNumeroDePlaca(string numeroPlaca)
+        {
+            try
+            {
+                var db = new Context();
+
+                IQueryable<int> resultado = from c in db.Vehiculo
+                                            where c.numeroDePlaca.Equals(numeroPlaca)
+                                            select c.id;
+
+                return resultado.FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+                return 0;
+            }
+        }
+
+
         public List<Model.Vehiculo> ObtenerTodosLosVehiculos()
         {
             var db = new Context();
-            var resultado = db.Vehiculo.ToList();
+            var resultado = db.Vehiculo.Where(elEstado => elEstado.estado == 1 || elEstado.estado ==2).ToList();
             return resultado;
         }
+        public List<Model.Vehiculo> ObtenerTodosLosVehiculosDisponibles()
+        {
+            var db = new Context();
+            var resultado = db.Vehiculo.Where(elEstado => elEstado.estado == 1).ToList();
+            return resultado;
+        }
+
 
         public void Agregar(Model.Vehiculo elNuevoVehiculo)
         {

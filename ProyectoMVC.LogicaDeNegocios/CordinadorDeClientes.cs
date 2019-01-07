@@ -15,11 +15,27 @@ namespace ProyectoMVC.LogicaDeNegocios
             return elGestor.ObtenerClientePorId(id);
         }
 
+        public int ObtenerIdClientePorNumeroDeCedula(String numeroDeCedula) {
 
+
+            ProyectoMVC.AccesoADatos.GestorDeClientes gestorDeClientes = new AccesoADatos.GestorDeClientes();
+            int idCliente = 0;
+
+            idCliente = gestorDeClientes.ObtenerIdPorNumeroDeCedula(numeroDeCedula);
+            return idCliente;
+
+
+        }
         public List<Model.Clientes> ListarClientes()
         {
             ProyectoMVC.AccesoADatos.GestorDeClientes elGestor = new AccesoADatos.GestorDeClientes();
             return elGestor.ObtenerTodosLosClientes();
+        }
+
+        public List<Model.Clientes> ListarClientesDisponibles()
+        {
+            ProyectoMVC.AccesoADatos.GestorDeClientes elGestor = new AccesoADatos.GestorDeClientes();
+            return elGestor.ObtenerTodosLosDisponibles();
         }
         public void Agregar(ProyectoMVC.Model.Clientes elNuevoCliente)
         {
@@ -32,6 +48,16 @@ namespace ProyectoMVC.LogicaDeNegocios
             ProyectoMVC.AccesoADatos.GestorDeClientes elGestor = new AccesoADatos.GestorDeClientes();
             elGestor.Actualizar(elCliente);
 
+        }
+
+        public void ColocarEnDisponible(int id)
+        {
+            ProyectoMVC.AccesoADatos.GestorDeClientes elGestor = new AccesoADatos.GestorDeClientes();
+            ProyectoMVC.Model.Clientes elCliente = new Model.Clientes();
+
+            elCliente = elGestor.ObtenerClientePorId(id);
+            elCliente.estado = (byte)EstadoDelCliente.Disponible;
+            elGestor.CambioDeEstado(elCliente);
         }
         public void ColocarEnPrestamo(int id)
         {

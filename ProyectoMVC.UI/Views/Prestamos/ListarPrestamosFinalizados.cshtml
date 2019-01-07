@@ -1,15 +1,11 @@
 ﻿@model IEnumerable<ProyectoMVC.Model.Prestamos>
 
 @{
-    ViewBag.Title = "ListarPrestamos";
-    string estado = ""; 
+    ViewBag.Title = "ListarPrestamosFinalizados";
 }
 
-<h2>Lista de prestamos</h2>
+<h2>Prestamos Finalizados</h2>
 
-<p>
-    @Html.ActionLink("Crear Nuevo Prestamo", "Crear", null, htmlAttributes: new { @class = "btn btn-success", @type = "button" })
-</p>
 <table class="table  table-hover">
     <tr>
         <th>
@@ -36,10 +32,7 @@
         <th>
             @Html.DisplayNameFor(model => model.montoACancelar)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.estado)
-        </th>
-        <th></th>
+
     </tr>
 
 @foreach (var item in Model) {
@@ -67,22 +60,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.montoACancelar)
-        </td>
-        <td>
-            @if (item.estado == 1)
-            {
-                estado = "En Proceso";
-                @estado;
-            }
-            else if (item.estado == 2)
-            {
-                estado = "Finalizado";
-                @estado;
-            }
-           
-        </td>
-        <td>
-            @Html.ActionLink("Finalizar", "Finalizar", new { id=item.id } , htmlAttributes: new { @class = "btn btn-primary", @type = "button" })
         </td>
     </tr>
 }

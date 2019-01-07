@@ -8,9 +8,20 @@
 <h2>Lista de Vehiculos</h2>
 
 <p>
-    @Html.ActionLink("Agregar nuevo", "Crear")
+    @Html.ActionLink("Agregar Nuevo", "Crear", null, htmlAttributes: new { @class = "btn btn-success", @type = "button" })
 </p>
-<table class="table table-responsive">
+
+<div class="table-responsive">
+    <table class="table text-center">
+        <tr>
+            <th>
+                <input id="laBusqueda" class="form-control form-control-sm" onkeyup="buscarEnLista()" type="text" placeholder="Busque por placa...">
+            </th>
+        </tr>
+    </table>
+
+</div>
+<table class="table table-responsive table-hover" id="miTabla">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.numeroDePlaca)
@@ -24,7 +35,7 @@
         <th>
             @Html.DisplayNameFor(model => model.estado)
         </th>
-        <th></th>
+        <th>Opciones</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -56,7 +67,7 @@
             }
         </td>
         <td>
-            <a id="@item.id" href="#" onclick="EliminarVehiculo(@item.id)">
+            <a id="@item.id" href="#" class="btn btn-danger" type="button" onclick="EliminarVehiculo(@item.id)">
                 Eliminar
             </a>
         </td>

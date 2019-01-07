@@ -15,17 +15,45 @@ namespace ProyectoMVC.LogicaDeNegocios
             return elGestor.ObtenerVehiculoPorId(id);
         }
 
+        public int ObtenerIdVehiculoPorNumeroDePlaca(String numeroDePlaca)
+        {
+
+
+            ProyectoMVC.AccesoADatos.GestorDeVehiculos gestorDeVehiculos = new AccesoADatos.GestorDeVehiculos();
+            int idVehiculo = 0;
+
+            idVehiculo = gestorDeVehiculos.ObtenerIdPorNumeroDePlaca(numeroDePlaca);
+            return idVehiculo;
+
+
+        }
 
         public List<Model.Vehiculo> ListarVehiculos()
         {
             ProyectoMVC.AccesoADatos.GestorDeVehiculos elGestor = new AccesoADatos.GestorDeVehiculos();
             return elGestor.ObtenerTodosLosVehiculos();
         }
+        public List<Model.Vehiculo> ListarVehiculosDisponibles()
+        {
+            ProyectoMVC.AccesoADatos.GestorDeVehiculos elGestor = new AccesoADatos.GestorDeVehiculos();
+            return elGestor.ObtenerTodosLosVehiculosDisponibles();
+        }
+
+
         public void Agregar(ProyectoMVC.Model.Vehiculo elNuevoVehiculo)
         {
             ProyectoMVC.AccesoADatos.GestorDeVehiculos elGestor = new AccesoADatos.GestorDeVehiculos();
             elNuevoVehiculo.estado = (byte)EstadoDelVehiculo.Disponible;
             elGestor.Agregar(elNuevoVehiculo);
+        }
+        public void ColocarEnDisponible(int id)
+        {
+            ProyectoMVC.AccesoADatos.GestorDeVehiculos elGestor = new AccesoADatos.GestorDeVehiculos();
+            ProyectoMVC.Model.Vehiculo elVehiculo = new Model.Vehiculo();
+
+            elVehiculo = elGestor.ObtenerVehiculoPorId(id);
+            elVehiculo.estado = (byte)EstadoDelCliente.Disponible;
+            elGestor.CambioDeEstado(elVehiculo);
         }
 
         public void ColocarEnPrestamo(int id)

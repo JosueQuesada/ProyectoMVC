@@ -1,0 +1,87 @@
+﻿@model ProyectoMVC.Model.Clientes
+
+@{
+    ViewBag.Title = "DetallesDelCliente";
+    string estado = "";
+}
+
+<h2>Detalles del Cliente</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cedula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pais)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pais)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @if (Model.estado == 1)
+            {
+                estado = "Disponible";
+                @estado;
+            }
+            else if (Model.estado == 2)
+            {
+                estado = "Con Prestamo";
+                @estado;
+            }
+            else if (Model.estado == 3)
+            {
+                estado = "Eliminado";
+                @estado;
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Regresar", "ListaDeClientes", null, htmlAttributes: new { @class = "btn btn-default", @type = "button" })
+</p>

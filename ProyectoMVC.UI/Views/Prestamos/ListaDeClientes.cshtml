@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ProyectoMVC.Model.Clientes>
+
+@{
+    ViewBag.Title = "ListaDeClientes";
+}
+
+<h2>Lista de Clientes</h2>
+
+<table class="table  table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.cedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellido)
+        </th>
+      
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cedula)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellido)
+        </td>
+      
+        <td>
+            <div class="btn-group" role="group" aria-label="Basic example">
+
+                @Html.ActionLink("Ver Prestamos", "ListarPrestamosFinalizados", new { numeroDeCedula = item.cedula }, htmlAttributes: new { @class = "btn btn-warning", @type = "button" })
+                @Html.ActionLink("Detalles", "DetallesDelCliente", new { id = item.id }, htmlAttributes: new { @class = "btn btn-info", @type = "button" })
+            </div>
+    
+        </td>
+    </tr>
+}
+
+</table>

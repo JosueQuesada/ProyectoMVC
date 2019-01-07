@@ -18,8 +18,6 @@ namespace ProyectoMVC.UI.Controllers
             return View(laListaDeClientes);
         }
 
-
-  
         public ActionResult Crear()
         {
             return View();

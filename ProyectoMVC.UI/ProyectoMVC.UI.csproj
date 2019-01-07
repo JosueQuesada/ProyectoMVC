@@ -164,6 +164,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -182,6 +183,10 @@
     <Content Include="Views\Vehiculo\Crear.cshtml" />
     <Content Include="Views\Prestamos\ListarPrestamos.cshtml" />
     <Content Include="Views\Prestamos\Crear.cshtml" />
+    <Content Include="Views\Prestamos\ListaDeClientes.cshtml" />
+    <Content Include="Views\Prestamos\ListarPrestamosFinalizados.cshtml" />
+    <Content Include="Views\Prestamos\DetallesDelCliente.cshtml" />
+    <Content Include="Views\Prestamos\Finalizar.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

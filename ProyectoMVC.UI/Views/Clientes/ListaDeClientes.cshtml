@@ -8,20 +8,20 @@
 <h2>Lista de Clientes</h2>
 
 <p>
-    @Html.ActionLink("Agregar Nuevo", "Crear")
+    @Html.ActionLink("Agregar Nuevo", "Crear",null, htmlAttributes: new { @class = "btn btn-success", @type = "button" })
 </p>
 <div class="table-responsive">
     <table class="table text-center">
         <tr>
             <th>
-                <input id="laBusqueda" class="form-control form-control-sm" onkeyup="buscarEnLista()" type="text" placeholder="Busque por nombre...">
+                <input id="laBusqueda" class="form-control form-control-sm" onkeyup="buscarEnLista()" type="text" placeholder="Busque por cedula...">
             </th>
         </tr>
     </table>
 
 </div>
 <div class="table-responsive">
-    <table class="table" id="miTabla">
+    <table class="table table-hover" id="miTabla">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.cedula)
@@ -44,7 +44,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.estado)
             </th>
-            <th></th>
+            <th>Opciones</th>
         </tr>
 
         @foreach (var item in Model)
@@ -87,10 +87,13 @@
 
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Editar", new { id = item.id }) |
-                    <a id="@item.id" href="#" onclick="EliminarCliente(@item.id)">
-                        Eliminar
-                    </a>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        @Html.ActionLink("Editar", "Editar", new { id = item.id }, htmlAttributes: new { @class = "btn btn-warning", @type = "button" })
+
+                        <a id="@item.id" class="btn btn-danger" type="button" href="#" onclick="EliminarCliente(@item.id)">
+                            Eliminar
+                        </a>
+                    </div>
                 </td>
             </tr>
         }
